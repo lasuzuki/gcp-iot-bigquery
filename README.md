@@ -42,6 +42,7 @@ According to the [European Space Agency] (http://wsn.spaceflight.esa.int/docs/Fa
 
 The moviment sensor **IMU** is quite important when you’re in space. Astronauts needs to always know which way they are pointing. If they do not know their orientation, they have a problem. An **IMU Sensor** like the one in the **Sense Hat** is used on all manned and unmanned spacecraft to track movements and understand orientation. Although the IMU Sensor in the Sense Hat is not as accurate as the one used in real missions, like Apollo mission, it is much smaller and a million times cheaper! It is quite fascinating to see the difference in size and the advancement of tecnology from the 70s's to 2015 technologies (the year Sense Hat was created). The IMU of Apollo 11 is shown below, and you can read more about it on [the Apollo primary guidance, navigation, and control system (PGNCS)](https://en.wikipedia.org/wiki/Apollo_PGNCS).
 
+<img src="https://github.com/lasuzuki/gcp-iot-bigquery/blob/main/blob/appolo%2011.jpg" width=400 align=center>
 
 
 
