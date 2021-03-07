@@ -79,7 +79,7 @@ In this tutorial we will be persisting data collected from Sense Hat to BigQuery
   z = acceleration['z']
 ```
 
-- The file **iot.py** contains the code to subscribe to the topic in Pub/Sub and receive the telemetry data from Raspberry Pi. Once the data is received it is sent via **DTN from host X to host X** according to the tutorial [Telemetry Data on Google Cloud using Pub/Sub, IoT Core and DTN](https://github.com/lasuzuki/dtn-gcp-iot). 
+- The file **iot.py** contains the code to subscribe to the topic in Pub/Sub and receive the telemetry data from Raspberry Pi. Once the data is received it is sent via **DTN from host X to host X** according to the tutorial Telemetry Data on Google Cloud using Pub/Sub, IoT Core and DTN [here](https://github.com/lasuzuki/dtn-gcp-iot). 
 
 ```python
   # Construct a BigQuery client object.
