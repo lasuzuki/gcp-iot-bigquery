@@ -70,6 +70,6 @@ In this tutorial we will be persisting data collected from Sense Hat to BigQuery
 - The file **sense_hat.py** contains the code that we use to connect the Raspberry Pi + Sense Hat to Google Cloud Platform via mqtt to Pub/Sub
 - The file **iot.py** contains the code to subscribe to the topic in Pub/Sub and receive the telemetry data from Raspberry Pi. Once the data is received it is sent via **DTN from host X to host X** according to the tutorial [Telemetry Data on Google Cloud using Pub/Sub, IoT Core and DTN](https://github.com/lasuzuki/dtn-gcp-iot). Once the data is shared via DTN it is persisted on **BigQuery** for further analysis of the information collected from the Raspberry Pi and the Sense Hat. The image below illustrates the data collected from Raspberry Pi via Pub/Sub and ingested in BigQuery.
 
-<img src="https://github.com/lasuzuki/gcp-iot-bigquery/blob/main/blob/big_query.png" width=400 align=center>
+<img src="https://github.com/lasuzuki/gcp-iot-bigquery/blob/main/blob/big_query.png" width=600 align=center>
 
 
