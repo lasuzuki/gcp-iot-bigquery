@@ -8,7 +8,7 @@ subscriber = pubsub_v1.SubscriberClient()
 # The `subscription_path` method creates a fully qualified identifier
 # in the form `projects/{project_id}/subscriptions/{subscription_name}`
 subscription_path = subscriber.subscription_path(
-  'dtn-host-iot-297209', 'listener')
+  'your_project_id', 'your_subscription_topic')
 def callback(message):
   value = message.data  
 
@@ -17,8 +17,8 @@ def callback(message):
 
   # Decode the messages from bytes to be in JSON format accepted by BigQuert
   y = value.decode(encoding="utf-8")
-  json_acceptable_string = y.replace("'", "\"")
-  d = json.loads(json_acceptable_string)
+  json_string = y.replace("'", "\"")
+  sense_data = json.loads(json_string)
 
   # Construct a BigQuery client object.
   client = bigquery.Client()
@@ -30,7 +30,7 @@ def callback(message):
   table = client.get_table(table_ref)
   
   # Make an API request.
-  errors = client.insert_rows_json(table,[d], row_ids=[None] * len(y))
+  errors = client.insert_rows_json(table,[sense_data], row_ids=[None] * len(y))
   if not errors:
       print('Data successfully loaded in table')
   else:

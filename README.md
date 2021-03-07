@@ -68,7 +68,40 @@ Big Data require expensive servers and skilled database administrators, and mana
 In this tutorial we will be persisting data collected from Sense Hat to BigQuery for further analysis and reporting, and even the use of BigQueryML to build machine learning on top of the data we collect from the environment.
 
 - The file **sense_hat.py** contains the code that we use to connect the Raspberry Pi + Sense Hat to Google Cloud Platform via mqtt to Pub/Sub
-- The file **iot.py** contains the code to subscribe to the topic in Pub/Sub and receive the telemetry data from Raspberry Pi. Once the data is received it is sent via **DTN from host X to host X** according to the tutorial [Telemetry Data on Google Cloud using Pub/Sub, IoT Core and DTN](https://github.com/lasuzuki/dtn-gcp-iot). Once the data is shared via DTN it is persisted on **BigQuery** for further analysis of the information collected from the Raspberry Pi and the Sense Hat. The image below illustrates the data collected from Raspberry Pi via Pub/Sub and ingested in BigQuery.
+
+```python
+  cur_temp = sense.get_temperature()
+  cur_pressure = sense.get_pressure()
+  cur_humidity = sense.get_humidity()
+  acceleration = sense.get_accelerometer_raw()
+  x = acceleration['x']
+  y = acceleration['y']
+  z = acceleration['z']
+```
+
+- The file **iot.py** contains the code to subscribe to the topic in Pub/Sub and receive the telemetry data from Raspberry Pi. Once the data is received it is sent via **DTN from host X to host X** according to the tutorial [Telemetry Data on Google Cloud using Pub/Sub, IoT Core and DTN](https://github.com/lasuzuki/dtn-gcp-iot). 
+
+```python
+  # Construct a BigQuery client object.
+  client = bigquery.Client()
+
+  # Set table_id to the ID of table to append to.
+  # table_id = "your-project.your_dataset.your_table"
+  dataset_ref = client.dataset('your_dataset')
+  table_ref = dataset_ref.table('your_table')
+  table = client.get_table(table_ref)
+  
+  # Make an API request.
+  errors = client.insert_rows_json(table,[sense_data], row_ids=[None] * len(y))
+  if not errors:
+      print('Data successfully loaded in table')
+  else:
+      print('Errors:')
+      for error in errors:
+          print(error)
+```
+
+Once the data is shared via DTN it is persisted on **BigQuery** for further analysis of the information collected from the Raspberry Pi and the Sense Hat. The image below illustrates the data collected from Raspberry Pi via Pub/Sub and ingested in BigQuery.
 
 ```sql
 SELECT * FROM `project_id.dataset_id.table_id` LIMIT 1000
