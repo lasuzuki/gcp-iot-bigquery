@@ -41,7 +41,7 @@ The Earth rotates around an axis that runs between the North and South Poles. Al
 
 To get the an object into a specific position, you can rotate it by a known amount around each of the three axes. The image below shows where the three axes are in relation to the Sense HAT.
 
-<img src="https://github.com/lasuzuki/gcp-iot-bigquery/blob/main/blob/rotation_movement.jpg" width=400 align=center>
+<img src="https://github.com/lasuzuki/gcp-iot-bigquery/blob/main/blob/rotation_movement.png" width=400 align=center>
 
 The **get_accelerometer_raw()** method tells you the amount of G-force acting on each axis (x, y, z). If any axis has ±1G, then you know that axis is pointing downwards. If the board is only rotated, it will only ever experience 1G of acceleration in any direction; if we were to shake it, the sensor would experience more than 1G. We could then detect that rapid motion and respond.
 
